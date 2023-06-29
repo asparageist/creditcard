@@ -1,14 +1,20 @@
 const cardNo = "4102080880435620";
 const cardNoArray = cardNo.split("");
+let lunhArray = [];
+luhnOne(cardNoArray);
 
 function luhnOne(){
-  const arrayOne = [];
-  for (let i = cardNoArray.length - 1; i >= 0; i--) {
-    if (i % 2 === 0) {
-      arrayOne.push(cardNoArray[i] * 2);
-    } else {
-      arrayOne.push(cardNoArray[i]);
-    }
+  for (let i = 0; i < cardNoArray.length; i++) {
+    const arrayNo = cardNoArray[i];
+    if (i % 2 === 1) {
+      const double = arrayNo * 2;
+      if (double > 9) {
+        const addDig = Math.floor(double / 10) + (double % 10);
+        cardNoArray[i] = addDig;
+      }else{
+        cardNoArray[i] = double;
+      }  
+    } 
   }
-  return arrayOne;
+  console.log(cardNoArray);
 }
